@@ -6,14 +6,15 @@ class InventoryType(Enum):
     MAGIC = 3
     SWAG = 4
 
+InventoryTypeEmojis = {InventoryType.HEALING: "❤️‍", InventoryType.MEELEE: "🗡", InventoryType.MAGIC: "🪄", InventoryType.SWAG: "💰"}
 
 class InventoryItem:
     # Notice that the parameters can have default values - that is, if you don't tell the method what you want
     #    item name to be, it will fill in "generic item" automatically; otherwise, it will use what you give it.
     #    This is in lieu of overloading methods, which python does not allow.
-    def __init__(self,      item_name:str = "generic item",
-                            item_type:InventoryType = InventoryType.SWAG,
-                            item_power:int = 0):
+    def __init__(self,      item_name: str = "generic item",
+                            item_type: InventoryType = InventoryType.SWAG,
+                           item_power: int = 0):
         self.name = item_name
         self.type = item_type
         self.power = item_power
@@ -49,7 +50,7 @@ class InventoryItem:
 
     def __gt__(self, other):
         """
-        overloaded "less than" operator - i.e., we are writing our own version of "<" when comparing this class to another.
+        overloaded "greater than" operator - i.e., we are writing our own version of "<" when comparing this class to another.
         :param other:
         :return:  whether the first item is "less than" the other item
         """
@@ -69,9 +70,7 @@ class InventoryItem:
         this is the equivalent to Java's toString() method for the user.
         :return: a string describing this Inventory Item
         """
-        type_strings = {InventoryType.HEALING: "Healing",InventoryType.MEELEE:"MEELEE",InventoryType.MAGIC: "MAGIC",InventoryType.SWAG: "SWAG"}
-        # with format, the {0} gets replaced by the first parameter, {1} gets replaced by the second parameter, etc.
-        return f"{type_strings[self.type]}: Level {self.power}\t{self.name}"
+        return f"({InventoryTypeEmojis[self.type]}: level {self.power} \"{self.name}\")"
 
     def __repr__(self):
         """
