@@ -290,3 +290,25 @@ class LinkedList(Generic[T]):
             result.append(p.get_value())
             p = p.get_next()
         return result
+
+
+    def __str__(self) -> str:
+        """
+        This is akin to the "toString()" method in java - this makes a string representation of this list.
+        :return: a string describing this list.
+        """
+        result = "["
+        p:LL_Node[T] = self.start
+        while p != None:
+            result += f"{p.get_value()} "
+            p = p.get_next()
+        result += "]"
+        return result
+
+    def __repr__(self) -> str:
+        """
+                This is akin to the "toString()" method in java - this makes a string representation of this list.
+                (For debugging.)
+                :return: a string describing this list.
+                """
+        return self.__str__() # in this case, the __repr__ and __str__ are the same.
